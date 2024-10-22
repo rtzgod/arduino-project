@@ -10,7 +10,7 @@ import (
 )
 
 type Data struct {
-	data string
+	Data string `json:"data"`
 }
 
 var (
