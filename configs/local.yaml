@@ -1,4 +1,4 @@
 serial:
-    name: COM3
+    name: COM4
     baud: 9600
     read-timeout: 500ms

@@ -6,6 +6,7 @@ import (
 	"github.com/rtzgod/arduino-project/internal/httpclient"
 	"github.com/tarm/serial"
 	"log"
+	"time"
 )
 
 func main() {
@@ -29,6 +30,7 @@ func main() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		client.Post(line)
+		time.Sleep(cfg.Serial.ReadTimeout)
 	}
 
 	if err := scanner.Err(); err != nil {

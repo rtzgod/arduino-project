@@ -42,11 +42,12 @@ func (c *Client) Post(data string) {
 		log.Println("Ошибка отправки:", err)
 		return
 	}
+
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
 		log.Printf("Ошибка: сервер вернул статус %d\n", resp.StatusCode)
 	} else {
-		log.Println("Данные успешно отправлены")
+		log.Printf("Данные успешно отправлены: %s", data)
 	}
 }
