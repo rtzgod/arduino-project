@@ -1,4 +1,4 @@
 serial:
-    name: /dev/ttyUSB0
+    name: COM3
     baud: 9600
-    read-timeout: 2s
+    read-timeout: 500ms

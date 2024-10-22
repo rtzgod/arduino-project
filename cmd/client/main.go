@@ -19,16 +19,15 @@ func main() {
 	}
 	port, err := serial.OpenPort(serialCfg)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("port")
 	}
 	defer port.Close()
 
-	client := httpclient.New("some-url")
+	client := httpclient.New("http://tty.kz:8080/data")
 
 	scanner := bufio.NewScanner(port)
 	for scanner.Scan() {
 		line := scanner.Text()
-
 		client.Post(line)
 	}
 

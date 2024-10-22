@@ -30,6 +30,17 @@ func RunServer() {
 
 // Обработчик для получения данных от Arduino (POST)
 func handlePostData(w http.ResponseWriter, r *http.Request) {
+	// Настройка заголовков CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")              // Разрешить все домены
+	w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS") // Разрешить POST и OPTIONS
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")  // Разрешить заголовок Content-Type
+
+	if r.Method == http.MethodOptions {
+		// Ответ на предварительный запрос
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	if r.Method != http.MethodPost {
 		http.Error(w, "Только POST запросы", http.StatusMethodNotAllowed)
 		return
@@ -57,6 +68,11 @@ func handlePostData(w http.ResponseWriter, r *http.Request) {
 
 // Обработчик для отдачи данных в Roblox (GET)
 func handleGetData(w http.ResponseWriter, r *http.Request) {
+	// Настройка заголовков CORS
+	w.Header().Set("Access-Control-Allow-Origin", "*")             // Разрешить все домены
+	w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS") // Разрешить GET и OPTIONS
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type") // Разрешить заголовок Content-Type
+
 	mu.Lock()
 	defer mu.Unlock()
 
