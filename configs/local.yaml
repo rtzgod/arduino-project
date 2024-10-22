@@ -1,0 +1,4 @@
+serial:
+    name: /dev/ttyUSB0
+    baud: 9600
+    read-timeout: 2s
